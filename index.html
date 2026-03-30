@@ -1,454 +1,421 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4689cc; -webkit-text-stroke: #4689cc}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #c27e65; -webkit-text-stroke: #c27e65}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #8cd3fe; -webkit-text-stroke: #8cd3fe}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #71c083; -webkit-text-stroke: #71c083}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #a7c598; -webkit-text-stroke: #a7c598}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca; min-height: 16.0px}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d7378; -webkit-text-stroke: #6d7378}
-    span.s1 {font-kerning: none; background-color: #171818}
-    span.s2 {font-kerning: none; color: #8cd3fe; background-color: #171818; -webkit-text-stroke: 0px #8cd3fe}
-    span.s3 {font-kerning: none; color: #6d6d6d; background-color: #171818; -webkit-text-stroke: 0px #6d6d6d}
-    span.s4 {font-kerning: none; color: #4689cc; background-color: #171818; -webkit-text-stroke: 0px #4689cc}
-    span.s5 {font-kerning: none; color: #cacaca; background-color: #171818; -webkit-text-stroke: 0px #cacaca}
-    span.s6 {font-kerning: none; color: #c27e65; background-color: #171818; -webkit-text-stroke: 0px #c27e65}
-    span.s7 {font-kerning: none; color: #b76ff7; background-color: #171818; -webkit-text-stroke: 0px #b76ff7}
-    span.s8 {font-kerning: none; color: #d4d4d4; background-color: #171818; -webkit-text-stroke: 0px #d4d4d4}
-    span.s9 {font-kerning: none; color: #71c083; background-color: #171818; -webkit-text-stroke: 0px #71c083}
-    span.s10 {font-kerning: none; color: #a7c598; background-color: #171818; -webkit-text-stroke: 0px #a7c598}
-    span.s11 {font-kerning: none}
-    span.s12 {font-kerning: none; color: #6d7378; background-color: #171818; -webkit-text-stroke: 0px #6d7378}
-    span.s13 {font-kerning: none; color: #f67c30; background-color: #171818; -webkit-text-stroke: 0px #f67c30}
-    span.s14 {font-kerning: none; color: #36c0a0; background-color: #171818; -webkit-text-stroke: 0px #36c0a0}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康卡路里計算助手 (AI 版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #10b981;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s4">html</span><span class="s5"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s1">"zh-TW"</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s6">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s5"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">title</span><span class="s3">&gt;</span><span class="s1">健康卡路里計算助手 (AI 版)</span><span class="s3">&lt;/</span><span class="s4">title</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s7">@import</span><span class="s5"> </span><span class="s6">url</span><span class="s8">(</span><span class="s1">'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">body</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-family:</span><span class="s1"> </span><span class="s9">'Noto Sans TC'</span><span class="s8">,</span><span class="s1"> </span><span class="s6">sans-serif</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s1"> #f8fafc</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">.card</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s6">white</span><span class="s8">;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">border-radius:</span><span class="s5"> </span><span class="s10">1rem</span><span class="s8">;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">box-shadow:</span><span class="s5"> </span><span class="s1">0</span><span class="s5"> </span><span class="s1">4px</span><span class="s5"> </span><span class="s1">6px</span><span class="s5"> </span><span class="s1">-1px</span><span class="s5"> </span><span class="s6">rgba(</span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0.1</span><span class="s6">)</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0</span><span class="s5"> </span><span class="s1">2px</span><span class="s5"> </span><span class="s1">4px</span><span class="s5"> </span><span class="s1">-1px</span><span class="s5"> </span><span class="s6">rgba(</span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0</span><span class="s8">,</span><span class="s5"> </span><span class="s1">0.06</span><span class="s6">)</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.loading-spinner</span><span class="s5"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border:</span><span class="s1"> </span><span class="s10">3px</span><span class="s1"> </span><span class="s6">solid</span><span class="s1"> #f3f3f3</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-top:</span><span class="s1"> </span><span class="s10">3px</span><span class="s1"> </span><span class="s6">solid</span><span class="s1"> #10b981</span><span class="s8">;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">border-radius:</span><span class="s5"> </span><span class="s10">50%</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">width:</span><span class="s1"> </span><span class="s10">24px</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">height:</span><span class="s1"> </span><span class="s10">24px</span><span class="s8">;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">animation:</span><span class="s5"> </span><span class="s1">spin</span><span class="s5"> </span><span class="s10">1s</span><span class="s5"> </span><span class="s1">linear</span><span class="s5"> </span><span class="s1">infinite</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">@keyframes</span><span class="s1"> </span><span class="s6">spin</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> </span><span class="s10">0%</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> </span><span class="s2">transform:</span><span class="s1"> </span><span class="s6">rotate(</span><span class="s10">0deg</span><span class="s6">)</span><span class="s8">;</span><span class="s1"> </span><span class="s8">}</span><span class="s1"> </span><span class="s10">100%</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> </span><span class="s2">transform:</span><span class="s1"> </span><span class="s6">rotate(</span><span class="s10">360deg</span><span class="s6">)</span><span class="s8">;</span><span class="s1"> </span><span class="s8">}</span><span class="s1"> </span><span class="s8">}</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s4">body</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 md:p-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"max-w-4xl mx-auto"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">header</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mb-8 text-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">h1</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-3xl font-bold text-slate-800 tracking-tight"</span><span class="s3">&gt;</span><span class="s5">健康卡路里計算助手 </span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-emerald-500 text-sm align-top"</span><span class="s3">&gt;</span><span class="s5">AI</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;&lt;/</span><span class="s4">h1</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500 mt-2"</span><span class="s3">&gt;</span><span class="s1">拍照計算熱量，紀錄每日健康</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">header</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-1 lg:grid-cols-3 gap-6"</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;!-- 左側：設定與狀態 --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-1 space-y-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- TDEE 設定 --&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"card p-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-lg font-semibold mb-4 text-emerald-600 flex items-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">svg</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-5 h-5 mr-2"</span><span class="s5"> </span><span class="s2">fill</span><span class="s3">=</span><span class="s1">"none"</span><span class="s5"> </span><span class="s2">stroke</span><span class="s3">=</span><span class="s1">"currentColor"</span><span class="s5"> </span><span class="s2">viewBox</span><span class="s3">=</span><span class="s1">"0 0 24 24"</span><span class="s3">&gt;&lt;</span><span class="s4">path</span><span class="s5"> </span><span class="s2">d</span><span class="s3">=</span><span class="s1">"M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"</span><span class="s3">&gt;&lt;/</span><span class="s4">path</span><span class="s3">&gt;&lt;/</span><span class="s4">svg</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>個人設定 (TDEE)</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-3 text-sm"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"grid grid-cols-2 gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500"</span><span class="s3">&gt;</span><span class="s1">性別</span><span class="s3">&lt;/</span><span class="s4">label</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">select</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"gender"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"male"</span><span class="s3">&gt;</span><span class="s1">男性</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"female"</span><span class="s1"> </span><span class="s2">selected</span><span class="s3">&gt;</span><span class="s1">女性</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">select</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500"</span><span class="s3">&gt;</span><span class="s1">年齡</span><span class="s3">&lt;/</span><span class="s4">label</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"age"</span><span class="s5"> </span><span class="s2">value</span><span class="s3">=</span><span class="s1">"25"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"grid grid-cols-2 gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500"</span><span class="s3">&gt;</span><span class="s1">體重 (kg)</span><span class="s3">&lt;/</span><span class="s4">label</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"weight"</span><span class="s5"> </span><span class="s2">value</span><span class="s3">=</span><span class="s1">"60"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500"</span><span class="s3">&gt;</span><span class="s1">身高 (cm)</span><span class="s3">&lt;/</span><span class="s4">label</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"height"</span><span class="s5"> </span><span class="s2">value</span><span class="s3">=</span><span class="s1">"160"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">label</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-slate-500"</span><span class="s3">&gt;</span><span class="s1">活動量</span><span class="s3">&lt;/</span><span class="s4">label</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">select</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"activity"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"1.2"</span><span class="s3">&gt;</span><span class="s1">久坐</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"1.375"</span><span class="s3">&gt;</span><span class="s1">輕量運動</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"1.55"</span><span class="s1"> </span><span class="s2">selected</span><span class="s3">&gt;</span><span class="s1">中度運動</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">option</span><span class="s1"> </span><span class="s2">value</span><span class="s3">=</span><span class="s6">"1.725"</span><span class="s3">&gt;</span><span class="s1">重度運動</span><span class="s3">&lt;/</span><span class="s4">option</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">select</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"calculateTDEE()"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full bg-emerald-500 text-white py-2 rounded-lg font-medium mt-2 hover:bg-emerald-600 transition"</span><span class="s3">&gt;</span><span class="s5">更新設定</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- 今日目標 --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"card p-6 bg-emerald-600 text-white"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">h3</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs font-bold opacity-80 uppercase tracking-widest"</span><span class="s3">&gt;</span><span class="s5">今日目標熱量</span><span class="s3">&lt;/</span><span class="s4">h3</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"mt-1 flex items-baseline"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-4xl font-black"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"target-display"</span><span class="s3">&gt;</span><span class="s5">1800</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"ml-1 opacity-80"</span><span class="s3">&gt;</span><span class="s1">kcal</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- 手動加入功能 --&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"card p-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-lg font-semibold mb-4 text-orange-500 flex items-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">svg</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-5 h-5 mr-2"</span><span class="s5"> </span><span class="s2">fill</span><span class="s3">=</span><span class="s1">"none"</span><span class="s5"> </span><span class="s2">stroke</span><span class="s3">=</span><span class="s1">"currentColor"</span><span class="s5"> </span><span class="s2">viewBox</span><span class="s3">=</span><span class="s1">"0 0 24 24"</span><span class="s3">&gt;&lt;</span><span class="s4">path</span><span class="s5"> </span><span class="s2">d</span><span class="s3">=</span><span class="s1">"M13 10V3L4 14h7v7l9-11h-7z"</span><span class="s3">&gt;&lt;/</span><span class="s4">path</span><span class="s3">&gt;&lt;/</span><span class="s4">svg</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>手動紀錄</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-3 text-sm"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"manual-name"</span><span class="s5"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"項目名稱 (如：跑步、漢堡)"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"manual-cal"</span><span class="s5"> </span><span class="s2">placeholder</span><span class="s3">=</span><span class="s1">"熱量 (kcal)"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full rounded-md border-slate-200 bg-slate-50 p-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"grid grid-cols-2 gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"manualAdd('food')"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600"</span><span class="s3">&gt;</span><span class="s5">＋飲食</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"manualAdd('exercise')"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-orange-500 text-white py-2 rounded-lg font-medium hover:bg-orange-600"</span><span class="s3">&gt;</span><span class="s5">－運動</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">section</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">&lt;!-- 右側：AI 拍照與紀錄 --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-2 space-y-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- AI 辨識區 --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"card p-6 border-2 border-dashed border-emerald-200 bg-emerald-50/30"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xl font-bold mb-4 text-slate-800 flex items-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">svg</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-6 h-6 mr-2 text-emerald-500"</span><span class="s5"> </span><span class="s2">fill</span><span class="s3">=</span><span class="s1">"none"</span><span class="s5"> </span><span class="s2">stroke</span><span class="s3">=</span><span class="s1">"currentColor"</span><span class="s5"> </span><span class="s2">viewBox</span><span class="s3">=</span><span class="s1">"0 0 24 24"</span><span class="s3">&gt;&lt;</span><span class="s4">path</span><span class="s5"> </span><span class="s2">d</span><span class="s3">=</span><span class="s1">"M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"</span><span class="s3">&gt;&lt;/</span><span class="s4">path</span><span class="s3">&gt;&lt;</span><span class="s4">path</span><span class="s5"> </span><span class="s2">d</span><span class="s3">=</span><span class="s1">"M15 13a3 3 0 11-6 0 3 3 0 016 0z"</span><span class="s3">&gt;&lt;/</span><span class="s4">path</span><span class="s3">&gt;&lt;/</span><span class="s4">svg</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>AI 食物拍照辨識</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex flex-col items-center justify-center p-4"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"file"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"camera-input"</span><span class="s5"> </span><span class="s2">accept</span><span class="s3">=</span><span class="s1">"image/*"</span><span class="s5"> </span><span class="s2">capture</span><span class="s3">=</span><span class="s1">"environment"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden"</span><span class="s5"> </span><span class="s2">onchange</span><span class="s3">=</span><span class="s1">"processImage(event)"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"document.getElementById('camera-input').click()"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-emerald-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-emerald-600 transform active:scale-95 transition flex items-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s3">&gt;</span><span class="s1">點擊拍照辨識食物</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-xs text-slate-400 mt-3 text-center"</span><span class="s3">&gt;</span><span class="s1">AI 會自動壓縮照片以確保分析成功</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"ai-loading"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden flex flex-col items-center py-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"loading-spinner mb-2"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-emerald-600 font-medium animate-pulse"</span><span class="s3">&gt;</span><span class="s5">AI 正在分析食物...</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"ai-result"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden mt-4 p-4 bg-white rounded-xl border border-emerald-100 shadow-inner"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">img</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"preview-img"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-24 h-24 object-cover rounded-lg border"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex-grow space-y-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"ai-food-name"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-grow p-2 text-sm border rounded bg-slate-50 font-bold"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">input</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"number"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"ai-food-cal"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-24 p-2 text-sm border rounded bg-slate-50 font-bold text-emerald-600"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex gap-2"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"addAIResult()"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-grow bg-emerald-500 text-white text-sm py-2 rounded font-bold hover:bg-emerald-600"</span><span class="s3">&gt;</span><span class="s5">確認加入紀錄</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"resetAI()"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"px-4 bg-slate-100 text-slate-400 text-sm py-2 rounded hover:bg-slate-200"</span><span class="s3">&gt;</span><span class="s5">取消</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- 進度條 --&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"card p-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex justify-between items-end mb-4"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-xl font-bold text-slate-800"</span><span class="s3">&gt;</span><span class="s1">今日熱量進度</span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-sm text-slate-400"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"date-now"</span><span class="s3">&gt;&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-right"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs text-slate-400 block mb-1"</span><span class="s3">&gt;</span><span class="s5">剩餘熱量</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-2xl font-black text-slate-700"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"remaining-val"</span><span class="s3">&gt;</span><span class="s5">1800</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-xs text-slate-400 ml-1"</span><span class="s3">&gt;</span><span class="s1">kcal</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"relative h-4 w-full bg-slate-100 rounded-full overflow-hidden mb-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"progress-bar"</span><span class="s5"> </span><span class="s2">style</span><span class="s3">=</span><span class="s1">"width:0%"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"h-full bg-emerald-500 transition-all duration-700 ease-out"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-2 gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-3 bg-blue-50 rounded-xl"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] text-blue-500 font-bold uppercase"</span><span class="s3">&gt;</span><span class="s5">飲食攝取 (+)</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xl font-bold text-blue-700"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"food-total"</span><span class="s3">&gt;</span><span class="s5">0 </span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs opacity-60"</span><span class="s3">&gt;</span><span class="s5">kcal</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-3 bg-orange-50 rounded-xl"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] text-orange-500 font-bold uppercase"</span><span class="s3">&gt;</span><span class="s5">運動消耗 (-)</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xl font-bold text-orange-700"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"exercise-total"</span><span class="s3">&gt;</span><span class="s5">0 </span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs opacity-60"</span><span class="s3">&gt;</span><span class="s5">kcal</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s12">&lt;!-- 清單 --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"card overflow-hidden"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-slate-50/80 border-b flex justify-between items-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-slate-700"</span><span class="s3">&gt;</span><span class="s1">紀錄清單</span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">button</span><span class="s5"> </span><span class="s2">onclick</span><span class="s3">=</span><span class="s1">"clearAll()"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xs text-red-400 font-medium hover:text-red-600"</span><span class="s3">&gt;</span><span class="s5">清除全部</span><span class="s3">&lt;/</span><span class="s4">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">ul</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"log-list"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"divide-y divide-slate-100 max-h-80 overflow-y-auto"</span><span class="s3">&gt;&lt;/</span><span class="s4">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">section</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">let</span><span class="s1"> tdee </span><span class="s8">=</span><span class="s1"> </span><span class="s13">1800</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">let</span><span class="s1"> logs </span><span class="s8">=</span><span class="s1"> </span><span class="s8">[];</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> apiKey </span><span class="s8">=</span><span class="s1"> </span><span class="s9">""</span><span class="s8">;</span><span class="s1"> </span><span class="s12">// API Key 會在運行時注入</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span>window</span><span class="s8">.</span><span class="s1">onload </span><span class="s8">=</span><span class="s1"> </span><span class="s8">()</span><span class="s1"> </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'date-now'</span><span class="s8">).</span><span class="s1">innerText </span><span class="s8">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">Date</span><span class="s8">().</span><span class="s1">toLocaleDateString</span><span class="s8">(</span><span class="s9">'zh-TW'</span><span class="s8">,</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> month</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'long'</span><span class="s8">,</span><span class="s1"> day</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'numeric'</span><span class="s8">,</span><span class="s1"> weekday</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'long'</span><span class="s1"> </span><span class="s8">});</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> savedSettings </span><span class="s8">=</span><span class="s1"> localStorage</span><span class="s8">.</span><span class="s1">getItem</span><span class="s8">(</span><span class="s9">'cal_tracker_settings'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">savedSettings</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> settings </span><span class="s8">=</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">parse</span><span class="s8">(</span><span class="s1">savedSettings</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'gender'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> settings</span><span class="s8">.</span><span class="s1">gender</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'weight'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> settings</span><span class="s8">.</span><span class="s1">weight</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'height'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> settings</span><span class="s8">.</span><span class="s1">height</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'age'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> settings</span><span class="s8">.</span><span class="s1">age</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'activity'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> settings</span><span class="s8">.</span><span class="s1">activity</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> lastDate </span><span class="s8">=</span><span class="s1"> localStorage</span><span class="s8">.</span><span class="s1">getItem</span><span class="s8">(</span><span class="s9">'cal_tracker_date'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> todayDate </span><span class="s8">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">Date</span><span class="s8">().</span><span class="s1">toDateString</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">lastDate </span><span class="s8">===</span><span class="s1"> todayDate</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> savedLogs </span><span class="s8">=</span><span class="s1"> localStorage</span><span class="s8">.</span><span class="s1">getItem</span><span class="s8">(</span><span class="s9">'cal_tracker_logs'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">savedLogs</span><span class="s8">)</span><span class="s1"> logs </span><span class="s8">=</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">parse</span><span class="s8">(</span><span class="s1">savedLogs</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span><span class="s1"> </span><span class="s7">else</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>localStorage</span><span class="s8">.</span><span class="s1">setItem</span><span class="s8">(</span><span class="s9">'cal_tracker_date'</span><span class="s8">,</span><span class="s1"> todayDate</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>localStorage</span><span class="s8">.</span><span class="s1">setItem</span><span class="s8">(</span><span class="s9">'cal_tracker_logs'</span><span class="s8">,</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">stringify</span><span class="s8">([]));</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>calculateTDEE</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">};</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> calculateTDEE</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> gender </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'gender'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> weight </span><span class="s8">=</span><span class="s1"> parseFloat</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'weight'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">)</span><span class="s1"> </span><span class="s8">||</span><span class="s1"> </span><span class="s13">60</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> height </span><span class="s8">=</span><span class="s1"> parseFloat</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'height'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">)</span><span class="s1"> </span><span class="s8">||</span><span class="s1"> </span><span class="s13">160</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> age </span><span class="s8">=</span><span class="s1"> parseInt</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'age'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">)</span><span class="s1"> </span><span class="s8">||</span><span class="s1"> </span><span class="s13">25</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> activity </span><span class="s8">=</span><span class="s1"> parseFloat</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'activity'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">);</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">let</span><span class="s1"> bmr </span><span class="s8">=</span><span class="s1"> </span><span class="s8">(</span><span class="s1">gender </span><span class="s8">===</span><span class="s1"> </span><span class="s9">'male'</span><span class="s8">)</span><span class="s1"><span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">?</span><span class="s1"> </span><span class="s8">(</span><span class="s13">10</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> weight </span><span class="s8">+</span><span class="s1"> </span><span class="s13">6.25</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> height </span><span class="s8">-</span><span class="s1"> </span><span class="s13">5</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> age </span><span class="s8">+</span><span class="s1"> </span><span class="s13">5</span><span class="s8">)</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">:</span><span class="s1"> </span><span class="s8">(</span><span class="s13">10</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> weight </span><span class="s8">+</span><span class="s1"> </span><span class="s13">6.25</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> height </span><span class="s8">-</span><span class="s1"> </span><span class="s13">5</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> age </span><span class="s8">-</span><span class="s1"> </span><span class="s13">161</span><span class="s8">);</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>tdee </span><span class="s8">=</span><span class="s1"> </span><span class="s14">Math</span><span class="s8">.</span><span class="s1">round</span><span class="s8">(</span><span class="s1">bmr </span><span class="s8">*</span><span class="s1"> activity</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'target-display'</span><span class="s8">).</span><span class="s1">innerText </span><span class="s8">=</span><span class="s1"> tdee</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>saveData</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> saveData</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> settings </span><span class="s8">=</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>gender</span><span class="s8">:</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'gender'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>weight</span><span class="s8">:</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'weight'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>height</span><span class="s8">:</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'height'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>age</span><span class="s8">:</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'age'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>activity</span><span class="s8">:</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'activity'</span><span class="s8">).</span><span class="s1">value</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">};</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>localStorage</span><span class="s8">.</span><span class="s1">setItem</span><span class="s8">(</span><span class="s9">'cal_tracker_settings'</span><span class="s8">,</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">stringify</span><span class="s8">(</span><span class="s1">settings</span><span class="s8">));</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>localStorage</span><span class="s8">.</span><span class="s1">setItem</span><span class="s8">(</span><span class="s9">'cal_tracker_logs'</span><span class="s8">,</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">stringify</span><span class="s8">(</span><span class="s1">logs</span><span class="s8">));</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">async</span><span class="s1"> </span><span class="s7">function</span><span class="s1"> processImage</span><span class="s8">(</span><span class="s1">event</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> file </span><span class="s8">=</span><span class="s1"> event</span><span class="s8">.</span><span class="s1">target</span><span class="s8">.</span><span class="s1">files</span><span class="s8">[</span><span class="s13">0</span><span class="s8">];</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(!</span><span class="s1">file</span><span class="s8">)</span><span class="s1"> </span><span class="s7">return</span><span class="s8">;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-loading'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">remove</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-result'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">add</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// 壓縮圖片：為了提高成功率，將長邊限制在 800px</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> reader </span><span class="s8">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">FileReader</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>reader</span><span class="s8">.</span><span class="s1">onload </span><span class="s8">=</span><span class="s1"> </span><span class="s7">function</span><span class="s8">(</span><span class="s1">e</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> img </span><span class="s8">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">Image</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>img</span><span class="s8">.</span><span class="s1">onload </span><span class="s8">=</span><span class="s1"> </span><span class="s7">function</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> canvas </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">createElement</span><span class="s8">(</span><span class="s9">'canvas'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">let</span><span class="s1"> width </span><span class="s8">=</span><span class="s1"> img</span><span class="s8">.</span><span class="s1">width</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">let</span><span class="s1"> height </span><span class="s8">=</span><span class="s1"> img</span><span class="s8">.</span><span class="s1">height</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> maxSide </span><span class="s8">=</span><span class="s1"> </span><span class="s13">800</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">width </span><span class="s8">&gt;</span><span class="s1"> height </span><span class="s8">&amp;&amp;</span><span class="s1"> width </span><span class="s8">&gt;</span><span class="s1"> maxSide</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> height </span><span class="s8">*=</span><span class="s1"> maxSide </span><span class="s8">/</span><span class="s1"> width</span><span class="s8">;</span><span class="s1"> width </span><span class="s8">=</span><span class="s1"> maxSide</span><span class="s8">;</span><span class="s1"> </span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">else</span><span class="s1"> </span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">height </span><span class="s8">&gt;</span><span class="s1"> maxSide</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> width </span><span class="s8">*=</span><span class="s1"> maxSide </span><span class="s8">/</span><span class="s1"> height</span><span class="s8">;</span><span class="s1"> height </span><span class="s8">=</span><span class="s1"> maxSide</span><span class="s8">;</span><span class="s1"> </span><span class="s8">}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>canvas</span><span class="s8">.</span><span class="s1">width </span><span class="s8">=</span><span class="s1"> width</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>canvas</span><span class="s8">.</span><span class="s1">height </span><span class="s8">=</span><span class="s1"> height</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> ctx </span><span class="s8">=</span><span class="s1"> canvas</span><span class="s8">.</span><span class="s1">getContext</span><span class="s8">(</span><span class="s9">'2d'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>ctx</span><span class="s8">.</span><span class="s1">drawImage</span><span class="s8">(</span><span class="s1">img</span><span class="s8">,</span><span class="s1"> </span><span class="s13">0</span><span class="s8">,</span><span class="s1"> </span><span class="s13">0</span><span class="s8">,</span><span class="s1"> width</span><span class="s8">,</span><span class="s1"> height</span><span class="s8">);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> compressedBase64 </span><span class="s8">=</span><span class="s1"> canvas</span><span class="s8">.</span><span class="s1">toDataURL</span><span class="s8">(</span><span class="s9">'image/jpeg'</span><span class="s8">,</span><span class="s1"> </span><span class="s13">0.7</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'preview-img'</span><span class="s8">).</span><span class="s1">src </span><span class="s8">=</span><span class="s1"> compressedBase64</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>analyzeWithAI</span><span class="s8">(</span><span class="s1">compressedBase64</span><span class="s8">.</span><span class="s1">split</span><span class="s8">(</span><span class="s9">','</span><span class="s8">)[</span><span class="s13">1</span><span class="s8">]);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">};</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>img</span><span class="s8">.</span><span class="s1">src </span><span class="s8">=</span><span class="s1"> e</span><span class="s8">.</span><span class="s1">target</span><span class="s8">.</span><span class="s1">result</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">};</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>reader</span><span class="s8">.</span><span class="s1">readAsDataURL</span><span class="s8">(</span><span class="s1">file</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">async</span><span class="s1"> </span><span class="s7">function</span><span class="s1"> analyzeWithAI</span><span class="s8">(</span><span class="s1">base64Image</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s5"> systemPrompt </span><span class="s8">=</span><span class="s5"> </span><span class="s1">"你是一個專業營養師。請分析這張食物照片，估算其食物名稱和總熱量(kcal)。請只回傳 JSON 格式：{\"food\": \"食物名稱\", \"calories\": 數字}。若無法辨識，請推測最可能的熱量。"</span><span class="s8">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">let</span><span class="s1"> retries </span><span class="s8">=</span><span class="s1"> </span><span class="s13">0</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> maxRetries </span><span class="s8">=</span><span class="s1"> </span><span class="s13">5</span><span class="s8">;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> callAPI </span><span class="s8">=</span><span class="s1"> </span><span class="s7">async</span><span class="s1"> </span><span class="s8">()</span><span class="s1"> </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">try</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s5"> response </span><span class="s8">=</span><span class="s5"> </span><span class="s7">await</span><span class="s5"> fetch</span><span class="s8">(</span><span class="s1">`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=</span><span class="s8">${</span><span class="s5">apiKey</span><span class="s8">}</span><span class="s1">`</span><span class="s8">,</span><span class="s5"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>method</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'POST'</span><span class="s8">,</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>headers</span><span class="s8">:</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> </span><span class="s9">'Content-Type'</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'application/json'</span><span class="s1"> </span><span class="s8">},</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>body</span><span class="s8">:</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">stringify</span><span class="s8">({</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span>contents</span><span class="s8">:</span><span class="s1"> </span><span class="s8">[{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span>parts</span><span class="s8">:</span><span class="s1"> </span><span class="s8">[</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s8">{</span><span class="s1"> text</span><span class="s8">:</span><span class="s1"> </span><span class="s9">"辨識圖中食物並提供卡路里"</span><span class="s1"> </span><span class="s8">},</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s8">{</span><span class="s1"> inlineData</span><span class="s8">:</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> mimeType</span><span class="s8">:</span><span class="s1"> </span><span class="s9">"image/jpeg"</span><span class="s8">,</span><span class="s1"> data</span><span class="s8">:</span><span class="s1"> base64Image </span><span class="s8">}</span><span class="s1"> </span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s8">]</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s8">}],</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span>systemInstruction</span><span class="s8">:</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> parts</span><span class="s8">:</span><span class="s1"> </span><span class="s8">[{</span><span class="s1"> text</span><span class="s8">:</span><span class="s1"> systemPrompt </span><span class="s8">}]</span><span class="s1"> </span><span class="s8">},</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span>generationConfig</span><span class="s8">:</span><span class="s1"> </span><span class="s8">{</span><span class="s1"> responseMimeType</span><span class="s8">:</span><span class="s1"> </span><span class="s9">"application/json"</span><span class="s1"> </span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s8">})</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s8">});</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(!</span><span class="s1">response</span><span class="s8">.</span><span class="s1">ok</span><span class="s8">)</span><span class="s1"> </span><span class="s7">throw</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">Error</span><span class="s8">(</span><span class="s9">`HTTP 錯誤: </span><span class="s8">${</span><span class="s1">response</span><span class="s8">.</span><span class="s1">status</span><span class="s8">}</span><span class="s9">`</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> data </span><span class="s8">=</span><span class="s1"> </span><span class="s7">await</span><span class="s1"> response</span><span class="s8">.</span><span class="s1">json</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> textResult </span><span class="s8">=</span><span class="s1"> data</span><span class="s8">.</span><span class="s1">candidates</span><span class="s8">?.[</span><span class="s13">0</span><span class="s8">]?.</span><span class="s1">content</span><span class="s8">?.</span><span class="s1">parts</span><span class="s8">?.[</span><span class="s13">0</span><span class="s8">]?.</span><span class="s1">text</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(!</span><span class="s1">textResult</span><span class="s8">)</span><span class="s1"> </span><span class="s7">throw</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s14">Error</span><span class="s8">(</span><span class="s9">"AI 未能產生內容"</span><span class="s8">);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> result </span><span class="s8">=</span><span class="s1"> </span><span class="s14">JSON</span><span class="s8">.</span><span class="s1">parse</span><span class="s8">(</span><span class="s1">textResult</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-loading'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">add</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-result'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">remove</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-food-name'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> result</span><span class="s8">.</span><span class="s1">food</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-food-cal'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> result</span><span class="s8">.</span><span class="s1">calories</span><span class="s8">;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">}</span><span class="s1"> </span><span class="s7">catch</span><span class="s1"> </span><span class="s8">(</span><span class="s1">error</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">retries </span><span class="s8">&lt;</span><span class="s1"> maxRetries</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>retries</span><span class="s8">++;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>setTimeout</span><span class="s8">(</span><span class="s1">callAPI</span><span class="s8">,</span><span class="s1"> </span><span class="s14">Math</span><span class="s8">.</span><span class="s1">pow</span><span class="s8">(</span><span class="s13">2</span><span class="s8">,</span><span class="s1"> retries</span><span class="s8">)</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> </span><span class="s13">1000</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s8">}</span><span class="s1"> </span><span class="s7">else</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-loading'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">add</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span>alert</span><span class="s8">(</span><span class="s9">"分析失敗："</span><span class="s1"> </span><span class="s8">+</span><span class="s1"> error</span><span class="s8">.</span><span class="s1">message </span><span class="s8">+</span><span class="s1"> </span><span class="s9">"\n請確保光線充足或手動輸入。"</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">};</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>callAPI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> manualAdd</span><span class="s8">(</span><span class="s1">type</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> name </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'manual-name'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">||</span><span class="s1"> </span><span class="s8">(</span><span class="s1">type </span><span class="s8">===</span><span class="s1"> </span><span class="s9">'food'</span><span class="s1"> </span><span class="s8">?</span><span class="s1"> </span><span class="s9">'未命名飲食'</span><span class="s1"> </span><span class="s8">:</span><span class="s1"> </span><span class="s9">'未命名運動'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> cal </span><span class="s8">=</span><span class="s1"> parseInt</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'manual-cal'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(!</span><span class="s1">isNaN</span><span class="s8">(</span><span class="s1">cal</span><span class="s8">))</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>logs</span><span class="s8">.</span><span class="s1">push</span><span class="s8">({</span><span class="s1"> id</span><span class="s8">:</span><span class="s1"> </span><span class="s14">Date</span><span class="s8">.</span><span class="s1">now</span><span class="s8">(),</span><span class="s1"> name</span><span class="s8">,</span><span class="s1"> cal</span><span class="s8">,</span><span class="s1"> type </span><span class="s8">});</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'manual-name'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> </span><span class="s9">''</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'manual-cal'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> </span><span class="s9">''</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>saveData</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span><span class="s1"> </span><span class="s7">else</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>alert</span><span class="s8">(</span><span class="s9">'請輸入熱量數值'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> addAIResult</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> name </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-food-name'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> cal </span><span class="s8">=</span><span class="s1"> parseInt</span><span class="s8">(</span><span class="s1">document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-food-cal'</span><span class="s8">).</span><span class="s1">value</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">name </span><span class="s8">&amp;&amp;</span><span class="s1"> </span><span class="s8">!</span><span class="s1">isNaN</span><span class="s8">(</span><span class="s1">cal</span><span class="s8">))</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>logs</span><span class="s8">.</span><span class="s1">push</span><span class="s8">({</span><span class="s1"> id</span><span class="s8">:</span><span class="s1"> </span><span class="s14">Date</span><span class="s8">.</span><span class="s1">now</span><span class="s8">(),</span><span class="s1"> name</span><span class="s8">,</span><span class="s1"> cal</span><span class="s8">,</span><span class="s1"> type</span><span class="s8">:</span><span class="s1"> </span><span class="s9">'food'</span><span class="s1"> </span><span class="s8">});</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>resetAI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>saveData</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> resetAI</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'ai-result'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">add</span><span class="s8">(</span><span class="s9">'hidden'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'camera-input'</span><span class="s8">).</span><span class="s1">value </span><span class="s8">=</span><span class="s1"> </span><span class="s9">''</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> deleteItem</span><span class="s8">(</span><span class="s1">id</span><span class="s8">)</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>logs </span><span class="s8">=</span><span class="s1"> logs</span><span class="s8">.</span><span class="s1">filter</span><span class="s8">(</span><span class="s1">log </span><span class="s8">=&gt;</span><span class="s1"> log</span><span class="s8">.</span><span class="s1">id </span><span class="s8">!==</span><span class="s1"> id</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>saveData</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> clearAll</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s8">(</span><span class="s1">confirm</span><span class="s8">(</span><span class="s9">'確定要清空今日紀錄？'</span><span class="s8">))</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>logs </span><span class="s8">=</span><span class="s1"> </span><span class="s8">[];</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>saveData</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>updateUI</span><span class="s8">();</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">function</span><span class="s1"> updateUI</span><span class="s8">()</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> list </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'log-list'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>list</span><span class="s8">.</span><span class="s1">innerHTML </span><span class="s8">=</span><span class="s1"> </span><span class="s9">''</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">let</span><span class="s1"> foodTotal </span><span class="s8">=</span><span class="s1"> </span><span class="s13">0</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">let</span><span class="s1"> exerciseTotal </span><span class="s8">=</span><span class="s1"> </span><span class="s13">0</span><span class="s8">;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>logs</span><span class="s8">.</span><span class="s1">forEach</span><span class="s8">(</span><span class="s1">log </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s8">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> isFood </span><span class="s8">=</span><span class="s1"> log</span><span class="s8">.</span><span class="s1">type </span><span class="s8">===</span><span class="s1"> </span><span class="s9">'food'</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">isFood</span><span class="s8">)</span><span class="s1"> foodTotal </span><span class="s8">+=</span><span class="s1"> log</span><span class="s8">.</span><span class="s1">cal</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">else</span><span class="s1"> exerciseTotal </span><span class="s8">+=</span><span class="s1"> log</span><span class="s8">.</span><span class="s1">cal</span><span class="s8">;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> li </span><span class="s8">=</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">createElement</span><span class="s8">(</span><span class="s9">'li'</span><span class="s8">);</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">                </span>li</span><span class="s8">.</span><span class="s5">className </span><span class="s8">=</span><span class="s5"> </span><span class="s1">'p-4 flex justify-between items-center group'</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>li</span><span class="s8">.</span><span class="s1">innerHTML </span><span class="s8">=</span><span class="s1"> </span><span class="s9">`</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center"&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div class="w-8 h-8 rounded-full flex items-center justify-center </span><span class="s8">${</span><span class="s5">isFood </span><span class="s8">?</span><span class="s5"> </span><span class="s1">'bg-blue-100'</span><span class="s5"> </span><span class="s8">:</span><span class="s5"> </span><span class="s1">'bg-orange-100'</span><span class="s8">}</span><span class="s1"> mr-3"&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s8">${</span><span class="s5">isFood </span><span class="s8">?</span><span class="s5"> </span><span class="s1">'🍲'</span><span class="s5"> </span><span class="s8">:</span><span class="s5"> </span><span class="s1">'🔥'</span><span class="s8">}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="font-medium text-slate-700"&gt;</span><span class="s8">${</span><span class="s5">log</span><span class="s8">.</span><span class="s5">name</span><span class="s8">}</span><span class="s1">&lt;/p&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center"&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="font-bold </span><span class="s8">${</span><span class="s5">isFood </span><span class="s8">?</span><span class="s5"> </span><span class="s1">'text-blue-600'</span><span class="s5"> </span><span class="s8">:</span><span class="s5"> </span><span class="s1">'text-orange-600'</span><span class="s8">}</span><span class="s1"> mr-4"&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s8">${</span><span class="s5">isFood </span><span class="s8">?</span><span class="s5"> </span><span class="s1">'+'</span><span class="s5"> </span><span class="s8">:</span><span class="s5"> </span><span class="s1">'-'</span><span class="s8">}${</span><span class="s5">log</span><span class="s8">.</span><span class="s5">cal</span><span class="s8">}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/span&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onclick="deleteItem(</span><span class="s8">${</span><span class="s5">log</span><span class="s8">.</span><span class="s5">id</span><span class="s8">}</span><span class="s1">)" class="text-slate-300 hover:text-red-500"&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"&gt;&lt;/path&gt;&lt;/svg&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>`</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span>list</span><span class="s8">.</span><span class="s1">prepend</span><span class="s8">(</span><span class="s1">li</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">});</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> net </span><span class="s8">=</span><span class="s1"> foodTotal </span><span class="s8">-</span><span class="s1"> exerciseTotal</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> remaining </span><span class="s8">=</span><span class="s1"> tdee </span><span class="s8">-</span><span class="s1"> net</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'food-total'</span><span class="s8">).</span><span class="s1">innerText </span><span class="s8">=</span><span class="s1"> foodTotal</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'exercise-total'</span><span class="s8">).</span><span class="s1">innerText </span><span class="s8">=</span><span class="s1"> exerciseTotal</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'remaining-val'</span><span class="s8">).</span><span class="s1">innerText </span><span class="s8">=</span><span class="s1"> remaining</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span>document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'progress-bar'</span><span class="s8">).</span><span class="s1">style</span><span class="s8">.</span><span class="s1">width </span><span class="s8">=</span><span class="s1"> </span><span class="s14">Math</span><span class="s8">.</span><span class="s1">min</span><span class="s8">((</span><span class="s1">net </span><span class="s8">/</span><span class="s1"> tdee</span><span class="s8">)</span><span class="s1"> </span><span class="s8">*</span><span class="s1"> </span><span class="s13">100</span><span class="s8">,</span><span class="s1"> </span><span class="s13">100</span><span class="s8">)</span><span class="s1"> </span><span class="s8">+</span><span class="s1"> </span><span class="s9">"%"</span><span class="s8">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> </span><span class="s8">(</span><span class="s1">net </span><span class="s8">&gt;</span><span class="s1"> tdee</span><span class="s8">)</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'progress-bar'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">replace</span><span class="s8">(</span><span class="s9">'bg-emerald-500'</span><span class="s8">,</span><span class="s1"> </span><span class="s9">'bg-red-500'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">else</span><span class="s1"> document</span><span class="s8">.</span><span class="s1">getElementById</span><span class="s8">(</span><span class="s9">'progress-bar'</span><span class="s8">).</span><span class="s1">classList</span><span class="s8">.</span><span class="s1">replace</span><span class="s8">(</span><span class="s9">'bg-red-500'</span><span class="s8">,</span><span class="s1"> </span><span class="s9">'bg-emerald-500'</span><span class="s8">);</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">}</span></p>
-<p class="p1"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">健康卡路里計算助手 <span class="text-emerald-500 text-sm align-top">AI</span></h1>
+            <p class="text-slate-500 mt-2">拍照或選取照片，AI 自動計算熱量</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- 左側：設定與狀態 -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- TDEE 設定 -->
+                <section class="card p-6">
+                    <h2 class="text-lg font-semibold mb-4 text-emerald-600 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        個人設定 (TDEE)
+                    </h2>
+                    <div class="space-y-3 text-sm">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-slate-500">性別</label>
+                                <select id="gender" class="w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2">
+                                    <option value="male">男性</option>
+                                    <option value="female" selected>女性</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-slate-500">年齡</label>
+                                <input type="number" id="age" value="25" class="w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-slate-500">體重 (kg)</label>
+                                <input type="number" id="weight" value="60" class="w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2">
+                            </div>
+                            <div>
+                                <label class="text-slate-500">身高 (cm)</label>
+                                <input type="number" id="height" value="160" class="w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-slate-500">活動量</label>
+                            <select id="activity" class="w-full mt-1 rounded-md border-slate-200 bg-slate-50 p-2">
+                                <option value="1.2">久坐</option>
+                                <option value="1.375">輕量運動</option>
+                                <option value="1.55" selected>中度運動</option>
+                                <option value="1.725">重度運動</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateTDEE()" class="w-full bg-emerald-500 text-white py-2 rounded-lg font-medium mt-2 hover:bg-emerald-600 transition">更新設定</button>
+                    </div>
+                </section>
+
+                <!-- 今日目標 -->
+                <div class="card p-6 bg-emerald-600 text-white">
+                    <h3 class="text-xs font-bold opacity-80 uppercase tracking-widest">今日目標熱量</h3>
+                    <div class="mt-1 flex items-baseline">
+                        <span class="text-4xl font-black" id="target-display">1800</span>
+                        <span class="ml-1 opacity-80">kcal</span>
+                    </div>
+                </div>
+
+                <!-- 手動加入功能 -->
+                <section class="card p-6">
+                    <h2 class="text-lg font-semibold mb-4 text-orange-500 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        手動紀錄
+                    </h2>
+                    <div class="space-y-3 text-sm">
+                        <input type="text" id="manual-name" placeholder="項目名稱 (如：跑步、漢堡)" class="w-full rounded-md border-slate-200 bg-slate-50 p-2">
+                        <input type="number" id="manual-cal" placeholder="熱量 (kcal)" class="w-full rounded-md border-slate-200 bg-slate-50 p-2">
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="manualAdd('food')" class="bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600">＋飲食</button>
+                            <button onclick="manualAdd('exercise')" class="bg-orange-500 text-white py-2 rounded-lg font-medium hover:bg-orange-600">－運動</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右側：AI 拍照與紀錄 -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- AI 辨識區 -->
+                <section class="card p-6 border-2 border-dashed border-emerald-200 bg-emerald-50/30">
+                    <h2 class="text-xl font-bold mb-4 text-slate-800 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        AI 食物辨識 (相機/相簿)
+                    </h2>
+                    
+                    <div class="flex flex-col items-center justify-center p-4">
+                        <!-- 移除 capture 屬性以允許從相簿選取 -->
+                        <input type="file" id="camera-input" accept="image/*" class="hidden" onchange="processImage(event)">
+                        <button onclick="document.getElementById('camera-input').click()" class="bg-emerald-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-emerald-600 transform active:scale-95 transition flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                            <span>拍照或從相簿選取</span>
+                        </button>
+                        <p class="text-xs text-slate-400 mt-3 text-center">支援直接拍照或上傳相簿照片</p>
+                    </div>
+
+                    <div id="ai-loading" class="hidden flex flex-col items-center py-6">
+                        <div class="loading-spinner mb-2"></div>
+                        <p class="text-emerald-600 font-medium animate-pulse">AI 正在分析食物...</p>
+                    </div>
+
+                    <div id="ai-result" class="hidden mt-4 p-4 bg-white rounded-xl border border-emerald-100 shadow-inner">
+                        <div class="flex gap-4">
+                            <img id="preview-img" class="w-24 h-24 object-cover rounded-lg border">
+                            <div class="flex-grow space-y-2">
+                                <div class="flex gap-2">
+                                    <input type="text" id="ai-food-name" class="flex-grow p-2 text-sm border rounded bg-slate-50 font-bold">
+                                    <input type="number" id="ai-food-cal" class="w-24 p-2 text-sm border rounded bg-slate-50 font-bold text-emerald-600">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="addAIResult()" class="flex-grow bg-emerald-500 text-white text-sm py-2 rounded font-bold hover:bg-emerald-600">確認加入紀錄</button>
+                                    <button onclick="resetAI()" class="px-4 bg-slate-100 text-slate-400 text-sm py-2 rounded hover:bg-slate-200">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 進度條 -->
+                <section class="card p-6">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-800">今日熱量進度</h2>
+                            <p class="text-sm text-slate-400" id="date-now"></p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-slate-400 block mb-1">剩餘熱量</span>
+                            <span class="text-2xl font-black text-slate-700" id="remaining-val">1800</span>
+                            <span class="text-xs text-slate-400 ml-1">kcal</span>
+                        </div>
+                    </div>
+                    
+                    <div class="relative h-4 w-full bg-slate-100 rounded-full overflow-hidden mb-6">
+                        <div id="progress-bar" style="width:0%" class="h-full bg-emerald-500 transition-all duration-700 ease-out"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 bg-blue-50 rounded-xl">
+                            <p class="text-[10px] text-blue-500 font-bold uppercase">飲食攝取 (+)</p>
+                            <p class="text-xl font-bold text-blue-700" id="food-total">0 <span class="text-xs opacity-60">kcal</span></p>
+                        </div>
+                        <div class="p-3 bg-orange-50 rounded-xl">
+                            <p class="text-[10px] text-orange-500 font-bold uppercase">運動消耗 (-)</p>
+                            <p class="text-xl font-bold text-orange-700" id="exercise-total">0 <span class="text-xs opacity-60">kcal</span></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 清單 -->
+                <section class="card overflow-hidden">
+                    <div class="p-4 bg-slate-50/80 border-b flex justify-between items-center">
+                        <h2 class="font-bold text-slate-700">紀錄清單</h2>
+                        <button onclick="clearAll()" class="text-xs text-red-400 font-medium hover:text-red-600">清除全部</button>
+                    </div>
+                    <ul id="log-list" class="divide-y divide-slate-100 max-h-80 overflow-y-auto"></ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tdee = 1800;
+        let logs = [];
+        const apiKey = ""; // API Key 會在運行時注入
+
+        window.onload = () => {
+            document.getElementById('date-now').innerText = new Date().toLocaleDateString('zh-TW', { month: 'long', day: 'numeric', weekday: 'long' });
+            
+            const savedSettings = localStorage.getItem('cal_tracker_settings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                document.getElementById('gender').value = settings.gender;
+                document.getElementById('weight').value = settings.weight;
+                document.getElementById('height').value = settings.height;
+                document.getElementById('age').value = settings.age;
+                document.getElementById('activity').value = settings.activity;
+            }
+
+            const lastDate = localStorage.getItem('cal_tracker_date');
+            const todayDate = new Date().toDateString();
+            if (lastDate === todayDate) {
+                const savedLogs = localStorage.getItem('cal_tracker_logs');
+                if (savedLogs) logs = JSON.parse(savedLogs);
+            } else {
+                localStorage.setItem('cal_tracker_date', todayDate);
+                localStorage.setItem('cal_tracker_logs', JSON.stringify([]));
+            }
+
+            calculateTDEE();
+            updateUI();
+        };
+
+        function calculateTDEE() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value) || 60;
+            const height = parseFloat(document.getElementById('height').value) || 160;
+            const age = parseInt(document.getElementById('age').value) || 25;
+            const activity = parseFloat(document.getElementById('activity').value);
+
+            let bmr = (gender === 'male') 
+                ? (10 * weight + 6.25 * height - 5 * age + 5)
+                : (10 * weight + 6.25 * height - 5 * age - 161);
+
+            tdee = Math.round(bmr * activity);
+            document.getElementById('target-display').innerText = tdee;
+            saveData();
+            updateUI();
+        }
+
+        function saveData() {
+            const settings = {
+                gender: document.getElementById('gender').value,
+                weight: document.getElementById('weight').value,
+                height: document.getElementById('height').value,
+                age: document.getElementById('age').value,
+                activity: document.getElementById('activity').value
+            };
+            localStorage.setItem('cal_tracker_settings', JSON.stringify(settings));
+            localStorage.setItem('cal_tracker_logs', JSON.stringify(logs));
+        }
+
+        async function processImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById('ai-loading').classList.remove('hidden');
+            document.getElementById('ai-result').classList.add('hidden');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxSide = 800; // 壓縮長邊至 800px 以利辨識並減少負載
+                    if (width > height && width > maxSide) { height *= maxSide / width; width = maxSide; }
+                    else if (height > maxSide) { width *= maxSide / height; height = maxSide; }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+                    document.getElementById('preview-img').src = compressedBase64;
+                    analyzeWithAI(compressedBase64.split(',')[1]);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function analyzeWithAI(base64Image) {
+            const systemPrompt = "你是一個專業營養師。請分析這張食物照片，估算其食物名稱和總熱量(kcal)。請只回傳 JSON 格式：{\"food\": \"食物名稱\", \"calories\": 數字}。若無法辨識，請回傳猜測值。";
+            
+            let retries = 0;
+            const maxRetries = 5;
+
+            const callAPI = async () => {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [
+                                    { text: "辨識圖中食物並提供卡路里" },
+                                    { inlineData: { mimeType: "image/jpeg", data: base64Image } }
+                                ]
+                            }],
+                            systemInstruction: { parts: [{ text: systemPrompt }] },
+                            generationConfig: { responseMimeType: "application/json" }
+                        })
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP 錯誤: ${response.status}`);
+                    const data = await response.json();
+                    const textResult = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (!textResult) throw new Error("AI 未能產生內容");
+                    
+                    const result = JSON.parse(textResult);
+                    document.getElementById('ai-loading').classList.add('hidden');
+                    document.getElementById('ai-result').classList.remove('hidden');
+                    document.getElementById('ai-food-name').value = result.food;
+                    document.getElementById('ai-food-cal').value = result.calories;
+
+                } catch (error) {
+                    if (retries < maxRetries) {
+                        retries++;
+                        setTimeout(callAPI, Math.pow(2, retries) * 1000);
+                    } else {
+                        document.getElementById('ai-loading').classList.add('hidden');
+                        alert("分析失敗，請重試或手動輸入。原因: " + error.message);
+                    }
+                }
+            };
+            callAPI();
+        }
+
+        function manualAdd(type) {
+            const nameInput = document.getElementById('manual-name');
+            const calInput = document.getElementById('manual-cal');
+            const name = nameInput.value || (type === 'food' ? '未命名飲食' : '未命名運動');
+            const cal = parseInt(calInput.value);
+            if (!isNaN(cal)) {
+                logs.push({ id: Date.now(), name, cal, type });
+                nameInput.value = '';
+                calInput.value = '';
+                saveData();
+                updateUI();
+            } else {
+                alert('請輸入熱量數值');
+            }
+        }
+
+        function addAIResult() {
+            const name = document.getElementById('ai-food-name').value;
+            const cal = parseInt(document.getElementById('ai-food-cal').value);
+            if (name && !isNaN(cal)) {
+                logs.push({ id: Date.now(), name, cal, type: 'food' });
+                resetAI();
+                saveData();
+                updateUI();
+            }
+        }
+
+        function resetAI() {
+            document.getElementById('ai-result').classList.add('hidden');
+            document.getElementById('camera-input').value = '';
+        }
+
+        function deleteItem(id) {
+            logs = logs.filter(log => log.id !== id);
+            saveData();
+            updateUI();
+        }
+
+        function clearAll() {
+            if(confirm('確定要清空今日紀錄？')) {
+                logs = [];
+                saveData();
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            const list = document.getElementById('log-list');
+            list.innerHTML = '';
+            let foodTotal = 0;
+            let exerciseTotal = 0;
+
+            logs.forEach(log => {
+                const isFood = log.type === 'food';
+                if (isFood) foodTotal += log.cal;
+                else exerciseTotal += log.cal;
+
+                const li = document.createElement('li');
+                li.className = 'p-4 flex justify-between items-center group';
+                li.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center ${isFood ? 'bg-blue-100' : 'bg-orange-100'} mr-3">
+                            ${isFood ? '🍲' : '🔥'}
+                        </div>
+                        <p class="font-medium text-slate-700">${log.name}</p>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="font-bold ${isFood ? 'text-blue-600' : 'text-orange-600'} mr-4">
+                            ${isFood ? '+' : '-'}${log.cal}
+                        </span>
+                        <button onclick="deleteItem(${log.id})" class="text-slate-300 hover:text-red-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                list.prepend(li);
+            });
+
+            const net = foodTotal - exerciseTotal;
+            const remaining = tdee - net;
+            document.getElementById('food-total').innerText = foodTotal;
+            document.getElementById('exercise-total').innerText = exerciseTotal;
+            document.getElementById('remaining-val').innerText = remaining;
+            document.getElementById('progress-bar').style.width = Math.min((net / tdee) * 100, 100) + "%";
+            if (net > tdee) document.getElementById('progress-bar').classList.replace('bg-emerald-500', 'bg-red-500');
+            else document.getElementById('progress-bar').classList.replace('bg-red-500', 'bg-emerald-500');
+        }
+    </script>
 </body>
 </html>
